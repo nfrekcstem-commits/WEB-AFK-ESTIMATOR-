@@ -1,198 +1,442 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Break & Steal AFK Calculator</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@600;700;800&display=swap');
+
 *{box-sizing:border-box}
-:root{
-  --turquoise:#22d3ce;--turquoise-dark:#0ea5a0;
-  --blue:#4ea1f7;--blue-dark:#2e73cf;
-  --purple:#9b5de5;--purple-dark:#6c2fc9;
-  --pink:#ff6fb5;--pink-dark:#e0438f;
-  --green:#3ee087;--green-dark:#1fae63;
-  --orange:#ffb347;--orange-dark:#f08a1f;
-  --bg:#120b1f;--card:#1d1330;--card2:#241840;
-  --text:#ffffff;--muted:#bfa9d6;
-  --radius:18px;
-}
-html,body{margin:0;padding:0}
 body{
-  font-family:'Nunito',Arial,sans-serif;color:var(--text);min-height:100vh;
-  background:
-    radial-gradient(circle at 10% -10%,#7b3bb855,transparent 45%),
-    radial-gradient(circle at 110% 10%,#1aa8a055,transparent 45%),
-    radial-gradient(circle at 90% 90%,#ff6fb533,transparent 40%),
-    linear-gradient(180deg,#160d27,#0d0818 60%);
-  padding:14px;
+ margin:0;padding:15px;color:white;
+ font-family:Nunito,sans-serif;
+ background:radial-gradient(circle at top,#512477,#160d25 55%,#090611);
 }
-h1,h2,h3{font-family:'Baloo 2',cursive}
-main{max-width:520px;margin:0 auto}
-
-@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8) rotate(0deg)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes pulseAnim{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
-@keyframes fillGrow{from{width:0}}
-
-.hero{
-  position:relative;overflow:hidden;padding:28px 20px 24px;border-radius:24px;
-  background:linear-gradient(130deg,var(--pink),var(--purple) 55%,var(--blue));
-  border:3px solid #ffffff55;box-shadow:0 10px 30px #00000055,inset 0 0 40px #ffffff22;
-  text-align:center;
-}
-.hero .egg3d{
-  font-size:64px;display:inline-block;margin-bottom:4px;
-  filter:drop-shadow(0 10px 10px #00000055);
-  animation:floaty 3.2s ease-in-out infinite;
-}
-.hero h1{
-  margin:4px 0 2px;font-size:clamp(24px,7vw,32px);line-height:1.08;letter-spacing:.5px;
-  color:#fff;text-shadow:3px 3px 0 #5a1d7a,0 0 18px #ffffff55;
-}
-.hero p{margin:0 0 14px;font-size:13px;font-weight:700;color:#fff0ff;letter-spacing:1px;text-transform:uppercase}
-.hero .badge{
-  display:inline-block;background:linear-gradient(135deg,var(--turquoise),var(--turquoise-dark));
-  color:#063b38;padding:10px 20px;border-radius:30px;font-weight:800;font-size:12.5px;
-  box-shadow:0 4px 14px #0ea5a066;border:2px solid #ffffff66;
-}
-.hero .credit{
-  margin-top:10px;font-size:11px;font-weight:800;letter-spacing:1px;
-  color:#ffffffcc;text-shadow:1px 1px 0 #00000055;
-}
-.hero .credit span{color:#fff;text-decoration:underline;text-underline-offset:3px}
-.hero .deco-icon{position:absolute;font-size:30px;opacity:.5;animation:floaty 4s ease-in-out infinite}
-.hero .deco-icon.i1{top:10px;left:14px;animation-delay:.2s}
-.hero .deco-icon.i2{bottom:14px;right:18px;font-size:26px;animation-delay:.9s}
-.hero .deco-icon.i3{top:16px;right:20px;font-size:22px;animation-delay:1.4s}
-
-.decor{display:flex;justify-content:space-around;margin:16px 0;font-size:24px}
-.decor span{display:inline-block;animation:floaty 3s ease-in-out infinite}
-.decor span:nth-child(2n){animation-delay:.5s;transform:translateY(-4px)}
-.decor span:nth-child(3n){animation-delay:1s}
-
+main{max-width:520px;margin:auto}
 .card{
-  background:linear-gradient(160deg,var(--card2),var(--card));
-  border:1px solid #6b4a9344;border-radius:var(--radius);padding:18px;margin-bottom:16px;
-  box-shadow:0 6px 18px #00000044;transition:transform .18s ease,box-shadow .18s ease;
+ background:linear-gradient(145deg,#28183c,#1a1129);
+ border:1px solid #684786;border-radius:20px;
+ padding:18px;margin-bottom:16px;
+ box-shadow:0 7px 18px #0005;
 }
-.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px #00000055}
-.card h3{font-size:15px;margin:0 0 14px;display:flex;align-items:center;gap:8px;color:#fff}
-.card h3 .ico{font-size:18px}
-label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin:12px 0 7px}
+h3{font-size:16px;margin:0 0 16px}
+.hero{
+ text-align:center;padding:28px 15px;
+ border-radius:24px;
+ background:linear-gradient(135deg,#ff76b8,#9b50e6,#368ce9);
+ border:3px solid #ffffff66;margin-bottom:17px;
+}
+.egg{font-size:65px;animation:float 3s infinite}
+.hero h1{
+ font-family:'Baloo 2';font-size:31px;
+ line-height:1.1;margin:5px 0;
+ text-shadow:3px 4px #642477;
+}
+.hero p{font-size:12px;font-weight:900;letter-spacing:2px}
+.tag{
+ display:inline-block;background:#16c8c0;color:#083a39;
+ padding:9px 17px;border-radius:30px;font-weight:900;
+}
+@keyframes float{50%{transform:translateY(-7px)}}
+
+label{
+ display:block;font-size:13px;color:#cbb5df;
+ margin:12px 0 7px;font-weight:800;
+}
 input,select{
-  width:100%;padding:13px;border-radius:12px;border:2px solid #684b7b;
-  background:#120c1b;color:#fff;font-size:15px;outline:none;font-family:'Nunito',sans-serif;font-weight:700;
+ width:100%;padding:14px;
+ border:2px solid #59416c;border-radius:12px;
+ background:#100b1a;color:white;
+ font-size:15px;font-weight:800;outline:none;
 }
-input:focus,select:focus{border-color:#22d3ce;box-shadow:0 0 10px #22d3ce55}
-input[type=range]{padding:0;accent-color:var(--pink);height:8px}
-.hint{font-size:11px;line-height:1.6;color:#a99bb6;margin-top:8px}
+input:focus,select:focus{border-color:#c16aff}
+.hint{font-size:11px;color:#a995b9;margin-top:7px}
 
-.panel-turquoise{
-  background:linear-gradient(150deg,#16524f,#0d2f30);
-  border:2px solid var(--turquoise);box-shadow:0 0 22px #22d3ce33,0 6px 16px #0008;
+.fence-list{
+ display:grid;grid-template-columns:1fr 1fr;gap:9px;
 }
-.panel-turquoise h3{color:#aef7f1}
+.option{
+ display:flex;align-items:center;gap:9px;
+ padding:12px 9px;border-radius:13px;
+ background:#160e23;border:2px solid #49335c;
+ cursor:pointer;font-size:12px;
+}
+.option input{width:auto;accent-color:#ff71bc}
+.option:has(input:checked){
+ border-color:#ff75c0;background:#432354;
+}
+.option span{display:block}
+.option small{color:#bda5d0;font-size:10px}
 
-.fence-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.fence-option{
-  position:relative;display:flex;align-items:center;gap:9px;padding:12px 10px;
-  border:2px solid #624879;border-radius:13px;background:#1a1026;font-size:12px;cursor:pointer;
-  transition:transform .15s ease,border-color .2s ease,background .2s ease;
+.mastery{display:flex;flex-direction:column;gap:9px}
+.mastery label{
+ display:flex;align-items:center;gap:10px;
+ margin:0;padding:12px;border-radius:13px;
+ border:2px solid #49345c;background:#160e23;
+ cursor:pointer;
 }
-.fence-option:hover{transform:translateY(-2px)}
-.fence-option .fico{font-size:19px;flex-shrink:0}
-.fence-option input{position:absolute;opacity:0;width:0;height:0}
-.fence-option span.name{font-weight:800;display:block;color:#f1e6ff}
-.fence-option small{display:block;color:#bca6cc;font-size:10.5px;margin-top:3px;font-weight:700}
-.fence-option:has(input:checked){
-  background:linear-gradient(135deg,#4a2f74,#2b1a52);
-  border-color:var(--pink);box-shadow:0 0 14px #ff6fb555;
+.mastery input{width:auto;accent-color:#39e58b}
+.mastery label:has(input:checked){
+ border-color:#3ee087;background:#174333;
 }
-.fence-option:has(input:checked) small{color:#ffd3ec}
+.mastery-info{flex:1}
+.mastery-info b{display:block;color:white}
+.mastery-info small{color:#3ee087}
 
-.mastery-list{display:flex;flex-direction:column;gap:10px}
-.mastery-row{
-  position:relative;display:flex;align-items:center;gap:12px;padding:12px;
-  border-radius:14px;border:2px solid #4b3568;background:#190f29;cursor:pointer;
-  transition:border-color .2s ease,background .2s ease,transform .15s ease;
+.green{
+ background:linear-gradient(145deg,#12504c,#102d35);
+ border:2px solid #25d6ce;
 }
-.mastery-row:hover{transform:translateY(-1px)}
-.mastery-row input{position:absolute;opacity:0;width:0;height:0}
-.mastery-info{flex:1;min-width:0}
-.mastery-title{display:block;font-weight:800;font-size:13px;color:#f1e6ff}
-.mastery-percent{display:block;font-size:11px;color:var(--green);font-weight:800;margin-top:2px}
-.mastery-bar{width:70px;height:10px;background:#0c0714;border-radius:8px;overflow:hidden;flex-shrink:0;border:1px solid #3b2a52}
-.mastery-fill{height:100%;background:linear-gradient(90deg,#3ee087,#1fae63);border-radius:8px;animation:fillGrow .6s ease}
-.mastery-lock{font-size:15px;opacity:.6;flex-shrink:0}
-.mastery-row:has(input:checked){
-  border-color:var(--green);background:linear-gradient(135deg,#1c4a34,#17382c);
-  box-shadow:0 0 14px #3ee08744;
+.duration{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
 }
-.mastery-row:has(input:checked) .mastery-lock{display:none}
-.mastery-row:not(:has(input:checked)) .mastery-lock{display:block}
-.mastery-row:has(input:checked)::after{
-  content:"OK";position:absolute;right:10px;top:50%;transform:translateY(-50%);
-  color:var(--green);font-weight:900;font-size:11px;letter-spacing:1px;
+.duration input{text-align:center}
+.presets{
+ display:grid;grid-template-columns:repeat(4,1fr);
+ gap:7px;margin-top:13px;
 }
-
-.panel-green{
-  background:linear-gradient(150deg,#0f4a46,#0b2f33);
-  border:2px solid var(--turquoise);box-shadow:0 0 20px #22d3ce22;
-}
-.duration-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.duration-grid input{text-align:center;font-size:17px;font-weight:800}
-.duration-grid label{text-align:center}
-.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:13px}
 button{
-  border:0;border-radius:11px;padding:12px 4px;color:#fff;font-weight:800;font-size:11px;cursor:pointer;
-  background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 4px 10px #0006;
-  transition:transform .15s ease;
+ border:0;border-radius:12px;padding:13px 3px;
+ background:linear-gradient(135deg,#459df1,#a04ee5);
+ color:white;font-weight:900;font-size:11px;cursor:pointer;
 }
 button:active{transform:scale(.95)}
-.duration-note{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:#bfe9e4;font-weight:700}
 
 .result{
-  position:relative;overflow:hidden;text-align:center;padding:30px 16px 26px;
-  border-radius:22px;margin-bottom:16px;
-  background:linear-gradient(145deg,#6a2f93,#35317a 55%,#1c3a6b);
-  border:3px solid #d48dff;box-shadow:0 0 30px #9d54d855,0 10px 26px #0007;
+ text-align:center;padding:28px 15px;
+ border:3px solid #d28aff;border-radius:23px;
+ background:linear-gradient(145deg,#642d91,#38327d,#204477);
+ margin-bottom:17px;
+ box-shadow:0 0 25px #a34ce755;
 }
-.result .chest{font-size:58px;filter:drop-shadow(0 8px 8px #00000066);animation:floaty 3s ease-in-out infinite}
-.result .sparkle{position:absolute;font-size:18px;animation:twinkle 2.2s ease-in-out infinite;opacity:.8}
-.result .sp1{top:14px;left:18px;animation-delay:.1s}
-.result .sp2{top:30px;right:24px;animation-delay:.6s;font-size:14px}
-.result .sp3{bottom:70px;left:28px;animation-delay:1.1s;font-size:15px}
-.result .sp4{bottom:50px;right:36px;animation-delay:1.6s;font-size:20px}
-.result .yeay{font-weight:800;font-size:16px;color:#ffe9ff;margin:10px 0 4px;text-shadow:1px 1px 0 #00000055}
-.result small{color:#e8d5ff;font-size:12px;font-weight:700}
-.total{font-size:clamp(26px,8vw,36px);font-weight:900;margin:12px 0;overflow-wrap:anywhere;color:#fff;text-shadow:2px 2px 0 #00000055;transition:transform .2s}
-.total.pulse{animation:pulseAnim .4s ease}
-.sub{font-size:12px;color:#e3cefa;font-weight:700}
+.chest{font-size:62px;animation:float 3s infinite}
+.result h3{margin:8px 0}
+.caption{font-size:12px;color:#e3d2ff}
+.total{
+ font-size:clamp(28px,8vw,40px);
+ font-weight:900;margin:15px 0;overflow-wrap:anywhere;
+}
+.format{display:flex;align-items:center;justify-content:center;gap:9px}
+.format select{width:auto;padding:8px 12px}
 
-.format-row{display:flex;align-items:center;gap:10px;margin:14px 0 2px;justify-content:center}
-.format-row label{margin:0;color:#e8d5ff;font-size:11px}
-.format-row select{width:auto;padding:8px 12px;font-size:12px;border-radius:20px;background:#ffffff22;border-color:#ffffff55}
-
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.stats{
+ display:grid;grid-template-columns:1fr 1fr;
+ gap:10px;margin-top:20px;
+}
 .stat{
-  padding:14px 12px;border-radius:14px;position:relative;overflow:hidden;
-  border:2px solid #ffffff33;box-shadow:0 5px 14px #00000033;transition:transform .15s ease;
+ padding:15px 10px;border-radius:15px;
+ border:2px solid #ffffff33;
 }
-.stat:hover{transform:translateY(-3px)}
-.stat small{font-size:10px;color:#ffffffcc;font-weight:800;text-transform:uppercase;letter-spacing:.4px}
-.stat strong{display:block;color:#fff;font-size:16px;margin-top:8px;overflow-wrap:anywhere;font-family:'Baloo 2',cursive}
-.stat.c-green{background:linear-gradient(150deg,#1f9e63,#176b45)}
-.stat.c-orange{background:linear-gradient(150deg,#e8972f,#a86419)}
-.stat.c-blue{background:linear-gradient(150deg,#3b7fd6,#28518f)}
-.stat.c-purple{background:linear-gradient(150deg,#8b4fd1,#5c2f93)}
+.stat small{font-weight:900;font-size:10px}
+.stat b{display:block;margin-top:10px;font-size:17px;overflow-wrap:anywhere}
+.g{background:linear-gradient(135deg,#209b68,#126044)}
+.o{background:linear-gradient(135deg,#e69a32,#a75d18)}
+.b{background:linear-gradient(135deg,#397fce,#244e91)}
+.p{background:linear-gradient(135deg,#9251cf,#572d90)}
+.wide{grid-column:1/-1}
 
-.stat-rows{display:flex;flex-direction:column;gap:8px}
-.stat-row{
-  display:flex;justify-content:space-between;align-items:center;padding:10px 12px;
-  background:#140e1e;border:1px solid #493254;border-radius:11px;
+.detail{
+ display:flex;justify-content:space-between;
+ gap:10px;padding:12px;margin-bottom:8px;
+ background:#120c1d;border-radius:11px;font-size:12px;
+}
+.detail b{color:#dcaaff;text-align:right;overflow-wrap:anywhere}
+.final-income{
+ padding:16px;border-radius:14px;
+ background:linear-gradient(135deg,#11634e,#164b72);
+ border:2px solid #35e2ad;margin-top:12px;
+ text-align:center;
+}
+.final-income small{color:#b8ffe7;font-weight:900}
+.final-income strong{
+ display:block;font-size:25px;color:#55ffc0;
+ margin-top:9px;overflow-wrap:anywhere;
+}
+.summary{
+ display:grid;grid-template-columns:1fr 1fr;gap:10px;
+ margin-top:13px;
+}
+.summary div{
+ text-align:center;padding:14px;
+ border-radius:12px;background:#392052;
+}
+.summary small{color:#cbb5df}
+.summary b{
+ display:block;color:#ffe18a;font-size:20px;margin-top:7px;
+}
+.footer{text-align:center;color:#8e7b9e;font-size:11px;padding:20px}
+</style>
+</head>
+
+<body>
+<main>
+
+<header class="hero">
+ <div class="egg">🥚</div>
+ <h1>BREAK & STEAL<br>AN EGG</h1>
+ <p>AFK INCOME CALCULATOR</p>
+ <div class="tag">💰 ULTIMATE AFK ESTIMATOR</div>
+ <p>MADE BY REALBEND</p>
+</header>
+
+<div class="card">
+ <h3>💰 BASE INCOME</h3>
+ <label>Income per detik</label>
+ <input id="base" type="number" min="0" value="0" placeholder="Masukkan income">
+ <label>Satuan income</label>
+ <select id="unit">
+  <option value="1">Dollar</option>
+  <option value="1e3">K</option>
+  <option value="1e6">M</option>
+  <option value="1e9">B</option>
+  <option value="1e12" selected>T</option>
+  <option value="1e15">Qa</option>
+  <option value="1e18">Qi</option>
+  <option value="1e21">Sx</option>
+  <option value="1e24">Sp</option>
+  <option value="1e27">Oc</option>
+  <option value="1e30">No</option>
+  <option value="1e33">Dc</option>
+ </select>
+</div>
+
+<div class="card">
+ <h3>🛡️ BUFF PAGAR / FENCE</h3>
+ <div class="fence-list">
+  <label class="option"><input type="radio" name="fence" value="0" checked><span>🚫 Kosongkan<small>+0% Cash</small></span></label>
+  <label class="option"><input type="radio" name="fence" value="115"><span>👼 Angelic<small>+115% Cash</small></span></label>
+  <label class="option"><input type="radio" name="fence" value="150"><span>🌋 Volcanic<small>+150% Cash</small></span></label>
+  <label class="option"><input type="radio" name="fence" value="200"><span>👑 Royale<small>+200% Cash</small></span></label>
+  <label class="option"><input type="radio" name="fence" value="250"><span>🧚 Fairy<small>+250% Cash</small></span></label>
+  <label class="option"><input type="radio" name="fence" value="300"><span>🐉 Dragon<small>+300% Cash</small></span></label>
+  <label class="option wide"><input type="radio" name="fence" value="400"><span>🌌 Omega<small>+400% Cash</small></span></label>
+ </div>
+</div>
+
+<div class="card">
+ <h3>💎 WEALTH MASTERY</h3>
+ <div class="mastery">
+  <label><input type="radio" name="mastery" value="0" checked><div class="mastery-info"><b>None</b><small>+0%</small></div></label>
+  <label><input type="radio" name="mastery" value="10"><div class="mastery-info"><b>Tycoon I - Level 10</b><small>+10%</small></div></label>
+  <label><input type="radio" name="mastery" value="25"><div class="mastery-info"><b>Tycoon II - Level 25</b><small>+25%</small></div></label>
+  <label><input type="radio" name="mastery" value="50"><div class="mastery-info"><b>Tycoon III - Level 50</b><small>+50%</small></div></label>
+  <label><input type="radio" name="mastery" value="90"><div class="mastery-info"><b>Tycoon IV - Level 75</b><small>+90%</small></div></label>
+  <label><input type="radio" name="mastery" value="150"><div class="mastery-info"><b>Tycoon V - Level 100</b><small>+150%</small></div></label>
+ </div>
+</div>
+
+<div class="card">
+ <h3>✨ BONUS TAMBAHAN</h3>
+ <label>Bonus ekstra (%)</label>
+ <input id="extra" type="number" min="0" value="0">
+</div>
+
+<div class="card green">
+ <h3>⏰ DURASI AFK</h3>
+ <div class="duration">
+  <div><label>Hari</label><input id="days" type="number" min="0" value="1"></div>
+  <div><label>Jam</label><input id="hours" type="number" min="0" value="0"></div>
+  <div><label>Menit</label><input id="minutes" type="number" min="0" value="0"></div>
+ </div>
+ <div class="presets">
+  <button data-time="0,1,0">1 JAM</button>
+  <button data-time="0,6,0">6 JAM</button>
+  <button data-time="0,12,0">12 JAM</button>
+  <button data-time="1,0,0">1 HARI</button>
+ </div>
+ <p class="hint" id="durationText">⏳ Selama 1 hari AFK</p>
+</div>
+
+<div class="result">
+ <div class="chest">🧰</div>
+ <h3>Yeay! Kamu dapat...</h3>
+ <div class="caption">💰 TOTAL UANG SELAMA AFK</div>
+ <div class="total" id="total">0</div>
+ <div class="caption" id="totalDuration">Selama 1 hari</div>
+
+ <div class="format">
+  <label>Format angka:</label>
+  <select id="format">
+   <option value="auto">Auto</option>
+   <option value="1">Dollar</option>
+   <option value="1e3">K</option>
+   <option value="1e6">M</option>
+   <option value="1e9">B</option>
+   <option value="1e12">T</option>
+   <option value="1e15">Qa</option>
+   <option value="1e18">Qi</option>
+   <option value="1e21">Sx</option>
+   <option value="1e24">Sp</option>
+   <option value="1e27">Oc</option>
+   <option value="1e30">No</option>
+   <option value="1e33">Dc</option>
+  </select>
+ </div>
+
+ <div class="stats">
+  <div class="stat g"><small>💵 PER MENIT</small><b id="perMin">0</b></div>
+  <div class="stat o"><small>⏱️ 1 JAM</small><b id="oneHour">0</b></div>
+  <div class="stat b"><small>🕕 6 JAM</small><b id="sixHour">0</b></div>
+  <div class="stat p"><small>🕛 12 JAM</small><b id="twelveHour">0</b></div>
+  <div class="stat g"><small>🌙 24 JAM</small><b id="dayMoney">0</b></div>
+  <div class="stat o"><small>📅 7 HARI</small><b id="weekMoney">0</b></div>
+  <div class="stat b wide"><small>🗓️ 30 HARI</small><b id="monthMoney">0</b></div>
+ </div>
+</div>
+
+<div class="card">
+ <h3>📈 DETAIL BONUS & INCOME</h3>
+ <div class="detail"><span>Base Income / detik</span><b id="detailBase">0</b></div>
+ <div class="detail"><span>Wealth Mastery</span><b id="detailMastery">+0%</b></div>
+ <div class="detail"><span>Fence Bonus</span><b id="detailFence">+0%</b></div>
+ <div class="detail"><span>Bonus Tambahan</span><b id="detailExtra">+0%</b></div>
+
+ <div class="summary">
+  <div><small>TOTAL BONUS</small><b id="totalBuff">0%</b></div>
+  <div><small>MULTIPLIER</small><b id="multiplier">x1</b></div>
+ </div>
+
+ <div class="final-income">
+  <small>💰 FINAL INCOME / DETIK</small>
+  <strong id="finalIncome">0</strong>
+ </div>
+ <p class="hint">Final Income adalah hasil Base Income setelah seluruh bonus digabungkan.</p>
+</div>
+
+<footer class="footer">
+ 🥚 BREAK & STEAL AN EGG<br>
+ AFK INCOME CALCULATOR<br>
+ FAN-MADE TOOL • REALBEND
+</footer>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+
+const suffix=[
+ [1e33,"Dc"],[1e30,"No"],[1e27,"Oc"],
+ [1e24,"Sp"],[1e21,"Sx"],[1e18,"Qi"],
+ [1e15,"Qa"],[1e12,"T"],[1e9,"B"],
+ [1e6,"M"],[1e3,"K"]
+];
+
+function clean(n){
+ if(!Number.isFinite(n))return "Angka terlalu besar";
+ return n.toFixed(1).replace(/\.0$/,"");
+}
+
+function formatNumber(n){
+ if(!Number.isFinite(n))return "Angka terlalu besar";
+ if(n===0)return "0";
+
+ const mode=$("format").value;
+
+ if(mode!=="auto"){
+  const scale=Number(mode);
+  const labels={
+   "1":"","1000":"K","1000000":"M",
+   "1000000000":"B","1000000000000":"T",
+   "1e15":"Qa","1e18":"Qi","1e21":"Sx",
+   "1e24":"Sp","1e27":"Oc","1e30":"No","1e33":"Dc"
+  };
+  return clean(n/scale)+(labels[mode]?" "+labels[mode]:"");
+ }
+
+ for(const [value,name] of suffix){
+  if(n>=value)return clean(n/value)+" "+name;
+ }
+
+ return clean(n);
+}
+
+function selected(name){
+ const el=document.querySelector('input[name="'+name+'"]:checked');
+ return el?Number(el.value):0;
+}
+
+function getDuration(){
+ const d=Math.max(0,Number($("days").value)||0);
+ const h=Math.max(0,Number($("hours").value)||0);
+ const m=Math.max(0,Number($("minutes").value)||0);
+ return d*86400+h*3600+m*60;
+}
+
+function durationLabel(){
+ const d=Number($("days").value)||0;
+ const h=Number($("hours").value)||0;
+ const m=Number($("minutes").value)||0;
+ let parts=[];
+ if(d)parts.push(d+" hari");
+ if(h)parts.push(h+" jam");
+ if(m)parts.push(m+" menit");
+ return parts.join(" ")||"0 menit";
+}
+
+function calculate(){
+ const base=Math.max(0,Number($("base").value)||0);
+ const unit=Number($("unit").value)||1;
+ const mastery=selected("mastery");
+ const fence=selected("fence");
+ const extra=Math.max(0,Number($("extra").value)||0);
+
+ const baseIncome=base*unit;
+ const bonus=mastery+fence+extra;
+ const multiplier=1+bonus/100;
+
+ // FINAL INCOME SETELAH SEMUA BONUS
+ const finalIncome=baseIncome*multiplier;
+
+ // AFK OTOMATIS 100%
+ const seconds=getDuration();
+ const total=finalIncome*seconds;
+
+ $("durationText").textContent="⏳ Selama "+durationLabel()+" AFK";
+ $("totalDuration").textContent="Selama "+durationLabel();
+
+ $("total").textContent=formatNumber(total);
+
+ $("perMin").textContent=formatNumber(finalIncome*60);
+ $("oneHour").textContent=formatNumber(finalIncome*3600);
+ $("sixHour").textContent=formatNumber(finalIncome*21600);
+ $("twelveHour").textContent=formatNumber(finalIncome*43200);
+ $("dayMoney").textContent=formatNumber(finalIncome*86400);
+ $("weekMoney").textContent=formatNumber(finalIncome*604800);
+ $("monthMoney").textContent=formatNumber(finalIncome*2592000);
+
+ $("detailBase").textContent=formatNumber(baseIncome);
+ $("detailMastery").textContent="+"+mastery+"%";
+ $("detailFence").textContent="+"+fence+"%";
+ $("detailExtra").textContent="+"+extra+"%";
+
+ $("totalBuff").textContent="+"+bonus+"%";
+ $("multiplier").textContent="x"+clean(multiplier);
+
+ // HASIL PENGGABUNGAN SELURUH BONUS
+ $("finalIncome").textContent=formatNumber(finalIncome)+"/s";
+}
+
+document.querySelectorAll("input,select").forEach(el=>{
+ el.addEventListener("input",calculate);
+ el.addEventListener("change",calculate);
+});
+
+document.querySelectorAll("[data-time]").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  const values=btn.dataset.time.split(",");
+  $("days").value=values[0];
+  $("hours").value=values[1];
+  $("minutes").value=values[2];
+  calculate();
+ });
+});
+
+calculate();
+</script>
+</body>
+</html>
+x solid #493254;border-radius:11px;
 }
 .stat-row .label{font-size:12px;color:#cdbbe0;font-weight:700;display:flex;align-items:center;gap:7px}
 .stat-row .value{font-size:13px;color:#f0c5ff;font-weight:800}
